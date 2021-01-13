@@ -17,8 +17,8 @@ There are different kinds of ActionController Components and EventComponents dep
 
 # ActionController
 This is the base controller, this handles basic list of reactions. You can add actions to be preformed by the object with the controller.
+![Example Set Up](https://i.imgur.com/NkMYTh2.png)
 
-![Example Result](https://i.imgur.com/SKB9a6i.gif)
 
 # EventMachine
 This is the base EventMachine, it handles events related to Triggers and Colliders, it also contains a taglist, so you can filter targets based on their tag.
@@ -30,4 +30,4 @@ This EventMachine handles Mouse based events on the Object, Such as OnMouseButto
 This EventMachine handles Trigger Events based on the other objects "Reactor" element, for example you could take a torch that has a Reaction for the "Fire" element, by lighting itself and also making itself an emitter of "Fire" enabling it to ignite things around it that react to the "Fire" reactor.
 
 
-![Example Set Up](https://i.imgur.com/NkMYTh2.png)
+![Example Result](https://i.imgur.com/SKB9a6i.gif)
