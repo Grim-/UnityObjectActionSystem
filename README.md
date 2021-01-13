@@ -26,3 +26,7 @@ This EventMachine handles Mouse based events on the Object, Such as OnMouseButto
 
 # Element_EventMachine - 90% Done (functional)
 This EventMachine handles Trigger Events based on the other objects "Reactor" element, for example you could take a torch that has a Reaction for the "Fire" element, by lighting itself and also making itself an emitter of "Fire" enabling it to ignite things around it that react to the "Fire" reactor.
+
+
+![Example Set Up](https://i.imgur.com/NkMYTh2.png)
+![Example Result](https://i.imgur.com/SKB9a6i.gif)
