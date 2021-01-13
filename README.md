@@ -18,6 +18,8 @@ There are different kinds of ActionController Components and EventComponents dep
 # ActionController
 This is the base controller, this handles basic list of reactions. You can add actions to be preformed by the object with the controller.
 
+![Example Result](https://i.imgur.com/SKB9a6i.gif)
+
 # EventMachine
 This is the base EventMachine, it handles events related to Triggers and Colliders, it also contains a taglist, so you can filter targets based on their tag.
 
@@ -29,4 +31,3 @@ This EventMachine handles Trigger Events based on the other objects "Reactor" el
 
 
 ![Example Set Up](https://i.imgur.com/NkMYTh2.png)
-![Example Result](https://i.imgur.com/SKB9a6i.gif)
