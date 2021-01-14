@@ -5,7 +5,7 @@ It is still work in progress, most of the basic features are finished but there 
 
 # Definitions 
 # Action
-An Action Preformed on either SELF or TARGET.
+An Action performed on either SELF or TARGET.
 # Reaction
 A Named Collection of Actions to be called by the static event StartNamedReaction.
 # ControllerComponent
@@ -16,7 +16,7 @@ Triggers specific events, can filter targets based on tag.
 There are different kinds of ActionController Components and EventComponents depending on the behaviour you are trying to achieve.
 
 # ActionController
-This is the base controller, this handles basic list of reactions. You can add actions to be preformed by the object with the controller.
+This is the base controller, this handles basic list of reactions. You can add actions to be performed by the object with the controller.
 
 ![Example Set Up_ActionView](https://i.imgur.com/HdQjsaE.png)
 
