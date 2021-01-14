@@ -17,10 +17,16 @@ There are different kinds of ActionController Components and EventComponents dep
 
 # ActionController
 This is the base controller, this handles basic list of reactions. You can add actions to be preformed by the object with the controller.
-Action View
+
 ![Example Set Up_ActionView](https://i.imgur.com/HdQjsaE.png)
-Data View
+
+Action View
+
+
 ![Example Set Up_DataView](https://i.imgur.com/SvjzcxJ.png)
+
+Data View
+
 
 # EventMachine
 This is the base EventMachine, it handles events related to Triggers and Colliders, it also contains a taglist, so you can filter targets based on their tag.
