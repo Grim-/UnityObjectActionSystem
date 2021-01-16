@@ -12,11 +12,12 @@ From simple examples such as, playing a particle effect on left clicking a GameO
 <img src="https://i.imgur.com/rmVfad4.gif">
 
 Or Starting a fire 
-![Fire Example on Imgur](https://imgur.com/WIaHxtK)
+[Fire Example on Imgur](https://imgur.com/WIaHxtK)
+
 
 ## How it Works
 
-The ObjectActionSystem (OAS) is made up of two parts, the __EventMachine__ and a __ActionController__.  
+The ObjectActionSystem (OAS) is made up of two main parts, the __EventMachine__ and a __ActionController__, there is also a custom Editor for the ActionControllers to make designing new reactions more pain free than through the standard unity UI.
 
 __EventMachine__
 
