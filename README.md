@@ -1,42 +1,56 @@
 # UnityObjectActionSystem
 
 Object Action System is a ScriptableObject based action system, allowing you to drag and drop actions, or a collection of actions to be performed in response to an event.
-It is still work in progress, most of the basic features are finished but there is some polish and extra features I want to include.
 
-# Definitions 
-# Action
-An Action performed on either SELF or TARGET.
-# Reaction
-A Named Collection of Actions to be called by the static event StartNamedReaction.
-# ControllerComponent
-Holds the reactions (a collection of actions) and the data needed by the actions to behave as they should. The controllers expose two methods StartReaction() and StartNamedReaction(string reactionName) which can be called by the event component on certain events.
-# EventComponent
-Triggers specific events, can filter targets based on tag.
+The ObjectActionSystem (OAS) is made up of two parts, the __EventMachine__ and a __ActionController__.  
 
-There are different kinds of ActionController Components and EventComponents depending on the behaviour you are trying to achieve.
+__EventMachine__
 
-# ActionController
-This is the base controller, this handles basic list of reactions. You can add actions to be performed by the object with the controller.
-
-![Example Set Up_ActionView](https://i.imgur.com/HdQjsaE.png)
-
-Action View
+This handles the calling of events, there are 3 types of EventMachines so far, with most using unity's built-in tag system for filtering events. 
 
 
-![Example Set Up_DataView](https://i.imgur.com/SvjzcxJ.png)
-
-Data View
+![EventMachine_Screenshot](https://i.imgur.com/PYKybPT.png)
 
 
-# EventMachine
-This is the base EventMachine, it handles events related to Triggers and Colliders, it also contains a taglist, so you can filter targets based on their tag.
 
-# Mouse_EventMachine
-This EventMachine handles Mouse based events on the Object, Such as OnMouseButton, OnMouseEnter, OnMouseDrag etc. it can also filter targets based on their tag.
 
-# Element_EventMachine - 90% Done (functional)
-This EventMachine handles Trigger Events based on the other objects "Reactor" element, for example you could take a torch that has a Reaction for the "Fire" element, by lighting itself and also making itself an emitter of "Fire" enabling it to ignite things around it that react to the "Fire" reactor.
+1. __EventMachine__
 
-Simple Barrel Example
-![Example Result](https://i.imgur.com/QeV81Vr.gif)
-![Example Result 2](https://i.imgur.com/CZFuEVT.gif)
+This is the most basic EventMachine it handles Trigger events and Collider events, it also has a __allowedTags__ array field allowing you to specify which Unity tags can trigger events.
+Events For EventMachine
+Triggers : OnEnterTrigger, OnStayTrigger, OnExitTrigger
+Colliders : OnEnterCollision, OnStayCollision, OnExitCollision
+
+
+2. __Mouse_EventMachine__
+
+An EventMachine for handling GameObject Mouse events, like the __EventMachine__ it has a __allowedTags__ field.
+
+Events For Mouse_EventMachine
+1. OnMouseAsButton 
+2. OnDragMouse 
+3. OnEnterMouse
+4. OnExitMouse
+5. OnUpMouse
+6. OnDownMouse
+7. OnOverMouse
+
+3. __Element_EventMachine__
+
+This EventMachine requires the GameObject to also have the Affector Component, it fires an event when another trigger collider enters it own trigger collider, who's Affector it has a reaction for.
+
+Events For Element_EventMachine
+OnAffector : When another Trigger collider enters the EventMachine's GameObject, with an Affector element for which there is a defined reaction. 
+
+
+__ActionController__
+
+The Controllers come in two different types, the ActionController and ElementActionController, these handle the execution and storing of per-object data for the actions.
+
+1. __ActionController
+
+The ActionController is the default controller, it's provides two functions to call from the EventMachine events
+
+*StartNamedReaction(string name)* - Finds a reaction by it's name then executes it.
+*StartReaction* - Executes the first reaction in it's list, regardless of name.
+
