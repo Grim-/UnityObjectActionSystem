@@ -14,7 +14,7 @@ public class ChangeMaterialColour_Action : ObjectAction
         AddDefaultFloatValue("B", 0f);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         Renderer renderer = null;
 
@@ -35,7 +35,7 @@ public class ChangeMaterialColour_Action : ObjectAction
         yield break;
     }
 
-    private void ChangeMaterialColour(ActionController _controller, string propertyName,  Color newColor)
+    private void ChangeMaterialColour(BaseController _controller, string propertyName,  Color newColor)
     {
         Renderer renderer = _controller.GetComponent<Renderer>();
 

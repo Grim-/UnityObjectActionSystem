@@ -11,7 +11,7 @@ public class SetPositionConstraints_Action : ObjectAction
         AddDefaultVectorValue("PositionConstraint", Vector3.zero);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         Rigidbody rigidbody = null;
 

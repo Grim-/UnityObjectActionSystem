@@ -8,20 +8,15 @@ public abstract class ObjectAction : ScriptableObject
     public const string scriptObjectPath = "Scriptable Objects/Object Action System/Object Actions/";
 
     public List<StringValue> stringValues = new List<StringValue>();
-
     public List<FloatValue> floatValues = new List<FloatValue>();
-
     public List<PrefabValue> prefabValues  = new List<PrefabValue>();
-
     public List<IntValue> intValues = new List<IntValue>();
-
     public List<Vector3Value> vectorValues = new List<Vector3Value>();
-
     public List<ActionValue> actionValues = new List<ActionValue>();
-
     public List<BoolValue> boolValues = new List<BoolValue>();
+    public List<EnumValue> enumValues = new List<EnumValue>();
 
-    public abstract IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint);
+    public abstract IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint);
 
     private void OnEnable()
     {
@@ -31,6 +26,12 @@ public abstract class ObjectAction : ScriptableObject
     public virtual void Init()
     {
         
+    }
+
+    public void AddDefaultEnumOfType(string name, string value)
+    {
+        EnumValue newFloat = new EnumValue(name, value);
+        if (enumValues.Find(x => x.name == name) == null) enumValues.Add(newFloat);
     }
 
     public void AddDefaultFloatValue(string name, float value)

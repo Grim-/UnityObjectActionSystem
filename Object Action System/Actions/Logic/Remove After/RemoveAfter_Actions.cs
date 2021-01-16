@@ -12,14 +12,14 @@ public class RemoveAfter_Actions : ObjectAction
         AddDefaultIntValue("Limit", 10);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
-        if (_controller.GetReactionRuns(_controller.GetCurrentReaction()) >= data.GetIntValue("Limit"))
-        {
-            _controller.SetCancelReaction();
-            _controller.reaction = null;
+        //if (_controller.GetReactionRuns(_controller.GetCurrentReaction()) >= data.GetIntValue("Limit"))
+        //{
+        //    _controller.SetCancelReaction();
+        //    _controller.reaction = null;
 
             yield break;
-        }
+        //}
     }
 }

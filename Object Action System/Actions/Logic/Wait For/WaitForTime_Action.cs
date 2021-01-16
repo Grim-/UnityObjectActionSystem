@@ -12,7 +12,7 @@ public class WaitForTime_Action : ObjectAction
         AddDefaultFloatValue("Wait", 1f);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         yield return new WaitForSeconds(data.GetFloatValue("Wait"));
     }

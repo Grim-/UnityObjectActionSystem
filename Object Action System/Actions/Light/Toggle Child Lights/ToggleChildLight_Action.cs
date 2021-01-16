@@ -8,11 +8,9 @@ public class ToggleChildLight_Action : ObjectAction
     public override void Init()
     {
         base.Init();
-        AddDefaultBoolValue("OverrideDisableAll", false);
-        AddDefaultBoolValue("OverrideEnableAll", false);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         GameObject targetObject = null;
 
@@ -26,31 +24,18 @@ public class ToggleChildLight_Action : ObjectAction
             break;
         }
 
-        ToggleLights(targetObject, data.GetBoolValue("OverrideDisableAll"), data.GetBoolValue("OverrideEnableAll"));
+        ToggleLights(targetObject);
 
         yield break;
     }
 
-    private void ToggleLights(GameObject gameObject, bool overrideDisableAll, bool overrideEnableAll)
+    private void ToggleLights(GameObject gameObject)
     {
         if(gameObject)
         {
             foreach (var child in gameObject.GetComponentsInChildren<Light>())
             {
-                if (overrideDisableAll)
-                {
-                    child.enabled = false;
-                    continue;
-                }
-                else if (overrideEnableAll)
-                {
-                    child.enabled = false;
-                    continue;
-                }
-                else
-                {
-                    child.enabled = !child.enabled;
-                }              
+                child.enabled = !child.enabled;                           
             }
         }
     }

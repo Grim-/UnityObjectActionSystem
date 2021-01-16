@@ -13,7 +13,7 @@ public class SpawnPrefabInColliderBounds_Action : ObjectAction
         AddDefaultVectorValue("SpawnOffset", Vector3.zero);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         GameObject spawnPrefab = data.GetPrefabValue("SpawnPrefab");
         Vector3 spawnPosition = Vector3.zero;

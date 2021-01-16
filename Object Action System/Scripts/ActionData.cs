@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class ActionData
     public List<IntValue> intValues = new List<IntValue>();
     public List<Vector3Value> vectorValues = new List<Vector3Value>();
     public List<ActionValue> actionValues = new List<ActionValue>();
+    public List<EnumValue> enumValues = new List<EnumValue>();
 
     public enum GameObjectActionTarget
     {
@@ -45,6 +47,12 @@ public class ActionData
         return vectorValues.Find(x => x.name == name).value;
     }
 
+    public T GetEnumValue<T>(Type type, string name) where T : Enum
+    {
+        T myEnum = (T)Enum.Parse(type, enumValues.Find(x => x.name == name).value);
+        return myEnum;
+    }
+    //;
     public List<GameObject> GetAllPrefabValues()
     {
         List<GameObject> prefabs = new List<GameObject>();

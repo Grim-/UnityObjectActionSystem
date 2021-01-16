@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Turn Off Child Lights", menuName = scriptObjectPath + "Turn Off Child Lights")]
 public class TurnOffChildLight_Action : ObjectAction
 {
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         GameObject targetObject = null;
 

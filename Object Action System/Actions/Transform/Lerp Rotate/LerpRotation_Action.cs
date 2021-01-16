@@ -13,7 +13,7 @@ public class LerpRotation_Action : ObjectAction
         AddDefaultFloatValue("Time", 0.5f);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         Transform targetTransform = null;
 

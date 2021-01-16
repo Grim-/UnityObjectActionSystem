@@ -12,7 +12,7 @@ public class AddForce_Action : ObjectAction
         AddDefaultVectorValue("ForceVector", Vector3.zero);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         Rigidbody rigidbody = null;
 

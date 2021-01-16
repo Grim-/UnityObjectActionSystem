@@ -12,7 +12,7 @@ public class SpawnRandomPrefab_Action : ObjectAction
         AddDefaultVectorValue("SpawnOffset", Vector3.zero);
     }
 
-    public override IEnumerator Execute(ActionController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         List<GameObject> list = data.GetAllPrefabValues();
 
