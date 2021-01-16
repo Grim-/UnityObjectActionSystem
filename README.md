@@ -8,8 +8,6 @@ __EventMachine__
 
 This handles the calling of events, there are 3 types of EventMachines so far, with most using unity's built-in tag system for filtering events. 
 
-<img src="https://i.imgur.com/PYKybPT.png" width="500" height="600">
-
 
 
 
