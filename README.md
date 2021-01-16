@@ -2,6 +2,22 @@
 
 Object Action System is a ScriptableObject based action system, allowing you to drag and drop actions, or a collection of actions to be performed in response to an event.
 
+
+## What it's For 
+
+OAS is designed to be a simple drag, drop and tweak collection of Components, Editors, Scripts and ObjectActions allowing you to quickly simple interactive items and objects to your game and/or project. 
+
+From simple examples such as, playing a particle effect on left clicking a GameObject, or scaling the object up.
+
+<img src="https://i.imgur.com/rmVfad4.gif">
+
+Or Starting a fire 
+
+<img src="https://i.imgur.com/WIaHxtK.gif">
+
+
+## How it Works
+
 The ObjectActionSystem (OAS) is made up of two parts, the __EventMachine__ and a __ActionController__.  
 
 __EventMachine__
