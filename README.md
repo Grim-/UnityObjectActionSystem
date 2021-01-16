@@ -109,7 +109,10 @@ public class LerpShadergraphFloatValue : ObjectAction
 ## How do I install and use it?
 
 Download the Repo and drag the "Object Action System" folder into your project, you will need to also install DoTween (Which is excellent), if you don't already have it! 
-Once everything is imported and ready, Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of _EventMachine_ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the Controller and then which kind of reaction you wish to call.
+
+Once everything is imported and ready - 
+
+Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of __EventMachine__ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the ActionController and then which kind of reaction method you wish to call.
 
 *StartNamedReaction(string name)* 
 
