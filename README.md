@@ -1,7 +1,7 @@
 # UnityObjectActionSystem
 
 Object Action System is a ScriptableObject based action system, allowing you to drag and drop actions, or a collection of actions to be performed in response to an event.
-
+ObjectActionSystem uses DoTween for tweening when available. http://dotween.demigiant.com/
 
 ## What it's For 
 
@@ -32,6 +32,76 @@ If you switch an action to the data tab, you can see what data it will use to pe
 5. LerpShaderGraphFloatValue - This action Lerps the PropertyName value to the chosen Value over LerpTime. For this example I created a simple dissolve shader and exposed the "DissolveValue" property in order to make the barrels fade out.
 6. DestroyGameObject - You can set either SELF or TARGET as the target of this action, most actions default to SELF.
 
+## So What actions are available? 
+Currently there are only a small selection of actions available, of which over the coming weeks I will list and document, that being said, it is easy to implement your own custom ObjectAction.
+
+First Extend From ObjectAction then override Init to add default values if they are needed, it's important to note, these are default values, that are used by the custom editor to dictate how the data tab is displayed, the actual values used are the ones you set in the inspector, but you still need these! 
+
+Secondly, Overriding Execute is where you write your custom action behaviour using data.GetStringValue(string name), GetFloatValue(string name), GetIntValue(string name), GetVectorValue(string name), GetPrefabValue(string name), GetBoolValue(string name), GetSOValue(string name) to retrieve the values set in the inspector for the action.
+
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+ [CreateAssetMenu(fileName = "Lerp ShaderGraph Float Value", menuName = scriptObjectPath + "Lerp ShaderGraph Float Value")]
+public class LerpShadergraphFloatValue : ObjectAction
+{
+    public override void Init()
+    {
+        base.Init();
+        //Adds a Default String Value to the Scriptable Object, that can then be changed in the inspector to suit the particular need by the user.
+        AddDefaultStringValue("PropertyName", "DissolveValue");
+        AddDefaultFloatValue("Value", 0f);
+        AddDefaultFloatValue("LerpTime", 1f);
+    }
+
+    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    {
+        Renderer targetObject = null;
+
+        switch (data.targetType)
+        {
+            case ActionData.GameObjectActionTarget.SELF:
+                targetObject = _controller.GetComponent<Renderer>();
+                break;
+            case ActionData.GameObjectActionTarget.TARGET:
+                targetObject = target.GetComponent<Renderer>();
+                break;
+        }
+        //This is one way to retrieve the value set by the user to be used at run time
+        //string PropertyNameToChange = data.GetStringValue("PropertyName");
+        yield return LerpFloatValue(targetObject, data.GetStringValue("PropertyName"), data.GetFloatValue("Value"), data.GetFloatValue("LerpTime"));
+
+
+        yield break;
+    }
+
+
+    private IEnumerator LerpFloatValue(Renderer targetObject, string propertyName, float value, float lerpTime)
+    {
+        float timer = 0;
+        float currentValue = targetObject.material.GetFloat(propertyName);
+
+        while (timer < lerpTime)
+        {
+            timer += Time.deltaTime;
+
+            targetObject.material.SetFloat(propertyName, Mathf.Lerp(currentValue, value, timer / lerpTime));
+
+            yield return null;
+        }
+
+        timer = 0f;
+
+        yield break;
+    }
+}
+```
+
+
+
+
 ## How it Works
 
 The ObjectActionSystem (OAS) is made up of two main parts, the __EventMachine__ and a __ActionController__, there is also a custom Editor for the ActionControllers to make designing new reactions more pain free than through the standard unity UI.
@@ -46,6 +116,8 @@ This handles the calling of events, there are 3 types of EventMachines so far, w
 
 
 __EventMachine__
+
+<img src="https://i.imgur.com/PYKybPT.png">
 
 This is the most basic EventMachine it handles Trigger events and Collider events, it also has a __allowedTags__ array field allowing you to specify which Unity tags can trigger events.
 
