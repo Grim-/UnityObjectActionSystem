@@ -196,3 +196,7 @@ The __ActionController__ is the default controller, it's provides two functions 
  
  2. __Element_ActionController__ is the second type of controller, identical to the first except in that, this one uses reactions defined by "Element" (ScriptableObject) instead of string names.
 
+
+### TO DO
+1. Custom Editor For the Event Machines!
+2. More Actions!
