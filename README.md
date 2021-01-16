@@ -34,7 +34,7 @@ If you switch an action to the data tab, you can see what data it will use to pe
 6. DestroyGameObject - You can set either SELF or TARGET as the target of this action, most actions default to SELF.
 
 ## So What actions are available? 
-Currently there are only a small selection of actions available, of which over the coming weeks I will list and document, but you can expect most methods from common Components to be added.
+Currently there are only a small selection of actions available, of which over the coming weeks I will list and document, but you can expect most methods from common Components to be added, for now you can check the Actions folder!
 
 That being said, it is easy to implement your own custom ObjectAction.
 
