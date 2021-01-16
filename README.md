@@ -1,7 +1,8 @@
 # UnityObjectActionSystem
 
 Object Action System is a ScriptableObject based action system, allowing you to drag and drop actions, or a collection of actions to be performed in response to an event.
-ObjectActionSystem uses DoTween for tweening when available. http://dotween.demigiant.com/
+
+ObjectActionSystem uses DoTween for tweening. http://dotween.demigiant.com/
 
 ## What it's For 
 
