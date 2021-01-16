@@ -193,4 +193,6 @@ The __ActionController__ is the default controller, it's provides two functions 
  1. *StartNamedReaction(string name)* - Finds a reaction by it's name then executes it.
 
  2. *StartReaction* - Executes the first reaction in it's list, regardless of name.
+ 
+ 2. __Element_ActionController__ is the second type of controller, identical to the first except in that, this one uses reactions defined by "Element" (ScriptableObject) instead of string names.
 
