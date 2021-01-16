@@ -34,11 +34,15 @@ If you switch an action to the data tab, you can see what data it will use to pe
 6. DestroyGameObject - You can set either SELF or TARGET as the target of this action, most actions default to SELF.
 
 ## So What actions are available? 
-Currently there are only a small selection of actions available, of which over the coming weeks I will list and document, that being said, it is easy to implement your own custom ObjectAction.
+Currently there are only a small selection of actions available, of which over the coming weeks I will list and document, but you can expect most methods from common Components to be added.
 
-First Extend From ObjectAction then override Init to add default values if they are needed, it's important to note, these are default values, that are used by the custom editor to dictate how the data tab is displayed, the actual values used are the ones you set in the inspector, but you still need these! 
+That being said, it is easy to implement your own custom ObjectAction.
 
-Secondly, Overriding Execute is where you write your custom action behaviour using data.GetStringValue(string name), GetFloatValue(string name), GetIntValue(string name), GetVectorValue(string name), GetPrefabValue(string name), GetBoolValue(string name), GetSOValue(string name) to retrieve the values set in the inspector for the action.
+1. Extend From *ObjectAction* then override *Init* to add default values if they are needed, it's important to note, these are default values, that are used by the custom editor to dictate how the data tab is displayed, the actual values used are the ones you set in the inspector, but you still need these! 
+
+Secondly, Overriding *Execute* is where you write your custom action behaviour using data.GetStringValue(string name), GetFloatValue(string name), GetIntValue(string name), GetVectorValue(string name), GetPrefabValue(string name), GetBoolValue(string name), GetSOValue(string name) to retrieve the values set in the inspector for the action, make sure to *yield break* as the very last thing done!
+
+Below is how LerpShaderGraphFloatValue is written.
 
 ```C#
 using System.Collections;
@@ -60,7 +64,8 @@ public class LerpShadergraphFloatValue : ObjectAction
     public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
     {
         Renderer targetObject = null;
-
+        //some actions may target either the object running the controller or the target that triggered it.
+        //You can choose to implement this or not
         switch (data.targetType)
         {
             case ActionData.GameObjectActionTarget.SELF:
@@ -105,7 +110,7 @@ public class LerpShadergraphFloatValue : ObjectAction
 
 ## How it Works
 
-The ObjectActionSystem (OAS) is made up of two main parts, the __EventMachine__ and a __ActionController__, there is also a custom Editor for the ActionControllers to make designing new reactions more pain free than through the standard unity UI.
+The ObjectActionSystem (OAS) is made up of two main parts, a __EventMachine__ and a __ActionController__, there is also a custom Editor for the ActionControllers to make designing new reactions more pain free than through the standard unity UI.
 
 
 __EventMachine__
