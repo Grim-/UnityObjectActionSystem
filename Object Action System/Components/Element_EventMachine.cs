@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Affector))]
 public class Element_EventMachine : MonoBehaviour
 {
     public UnityEvent<Element, GameObject, Vector3, Collider> OnAffector;

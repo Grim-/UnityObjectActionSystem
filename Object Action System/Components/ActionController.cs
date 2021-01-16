@@ -26,20 +26,6 @@ public class ActionController : BaseController
         }
     }
 
-    //private IEnumerator DoReaction(ObjectReactionData reaction, GameObject otherGameObject, Vector3 reactionHitPosition)
-    //{
-    //    if (cancelReaction)
-    //    {
-    //        StopAllCoroutines();
-    //        SetIsRunning(false);
-    //        yield break;
-    //    }
-    //    SetIsRunning(true);
-    //    SetCurrentReaction(reaction);
-    //    yield return DoActions(otherGameObject, reactionHitPosition);
-    //    SetIsRunning(false);
-    //    yield break;
-    //}
     public override IEnumerator DoActions(GameObject otherGameObject, Vector3 reactionHitPosition)
     {
         for (int i = 0; i < currentReaction.actions.Count; i++)
@@ -55,49 +41,4 @@ public class ActionController : BaseController
         }
         yield return null;
     }
-
-    //public ObjectReactionData GetCurrentReaction()
-    //{
-    //    return currentReaction;
-    //}
-    //public void SetCurrentReaction(ObjectReactionData reaction)
-    //{
-    //    currentReaction = reaction;
-    //}
-    //public bool SetCancelReaction()
-    //{
-    //    cancelReaction = true;
-
-    //    return cancelReaction;
-    //}
-    //public bool GetIsRunning()
-    //{
-    //    return IsRunning;
-    //}
-    //public void SetIsRunning(bool value)
-    //{
-    //    IsRunning = value;
-    //}
-
-    //public ObjectAction GetCurrentAction()
-    //{
-    //    return currentAction;
-    //}
-    //public void SetCurrentAction(ObjectAction action)
-    //{
-    //    currentAction = action;
-    //}
-    //public int GetCurrentActionIndex()
-    //{
-    //    return currentActionIndex;
-    //}
-    //public void SetCurrentActionIndex(int value)
-    //{
-    //    currentActionIndex = value;
-    //}
-
-    //public override IEnumerator DoActions(GameObject otherGameObject, Vector3 reactionHitPosition)
-    //{
-    //    throw new NotImplementedException();
-    //}
 }
