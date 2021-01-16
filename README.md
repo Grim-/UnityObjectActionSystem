@@ -114,7 +114,7 @@ Once everything is imported and ready -
 
 Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of __EventMachine__ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the ActionController and then which kind of reaction method you wish to call.
 
-__*StartNamedReaction(string name)* __
+__*StartNamedReaction(string name)*__
 
 If you want to call a particular named reaction this is useful for object which have multiple similar but different events, such as a light, which may have a reaction to Toggle Lights on/off, but another two reactions specifically for TurningOff the light and TurningOn respectively. 
 
