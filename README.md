@@ -8,25 +8,29 @@ __EventMachine__
 
 This handles the calling of events, there are 3 types of EventMachines so far, with most using unity's built-in tag system for filtering events. 
 
-
-![EventMachine_Screenshot](https://i.imgur.com/PYKybPT.png)
-
+<img src="https://i.imgur.com/PYKybPT.png" width="500" height="600">
 
 
 
-1. __EventMachine__
+
+
+__EventMachine__
 
 This is the most basic EventMachine it handles Trigger events and Collider events, it also has a __allowedTags__ array field allowing you to specify which Unity tags can trigger events.
+
 Events For EventMachine
+
 Triggers : OnEnterTrigger, OnStayTrigger, OnExitTrigger
+
 Colliders : OnEnterCollision, OnStayCollision, OnExitCollision
 
 
-2. __Mouse_EventMachine__
+ __Mouse_EventMachine__
 
 An EventMachine for handling GameObject Mouse events, like the __EventMachine__ it has a __allowedTags__ field.
 
 Events For Mouse_EventMachine
+
 1. OnMouseAsButton 
 2. OnDragMouse 
 3. OnEnterMouse
@@ -35,12 +39,13 @@ Events For Mouse_EventMachine
 6. OnDownMouse
 7. OnOverMouse
 
-3. __Element_EventMachine__
+__Element_EventMachine__
 
 This EventMachine requires the GameObject to also have the Affector Component, it fires an event when another trigger collider enters it own trigger collider, who's Affector it has a reaction for.
 
 Events For Element_EventMachine
-OnAffector : When another Trigger collider enters the EventMachine's GameObject, with an Affector element for which there is a defined reaction. 
+
+1. OnAffector : When another Trigger collider enters the EventMachine's GameObject, with an Affector element for which there is a defined reaction. 
 
 
 __ActionController__
@@ -51,6 +56,7 @@ The Controllers come in two different types, the ActionController and ElementAct
 
 The ActionController is the default controller, it's provides two functions to call from the EventMachine events
 
-*StartNamedReaction(string name)* - Finds a reaction by it's name then executes it.
-*StartReaction* - Executes the first reaction in it's list, regardless of name.
+ 1. *StartNamedReaction(string name)* - Finds a reaction by it's name then executes it.
+
+ 2. *StartReaction* - Executes the first reaction in it's list, regardless of name.
 
