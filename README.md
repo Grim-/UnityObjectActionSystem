@@ -106,7 +106,21 @@ public class LerpShadergraphFloatValue : ObjectAction
 ```
 
 
+## How do I install and use it?
 
+Download the Repo and drag the "Object Action System" folder into your project, you will need to also install DoTween (Which is excellent), if you don't already have it! 
+Once everything is imported and ready, Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of _EventMachine_ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the Controller and then which kind of reaction you wish to call.
+
+*StartNamedReaction(string name)* 
+
+If you want to call a particular named reaction this is useful for object which have multiple similar but different events, such as a light, which may have a reaction to Toggle Lights on/off, but another two reactions specifically for TurningOff the light and TurningOn respectively. 
+
+You may want the light to toggle on when it is clicked, but you may also want a button that can turn off all attached lights and another to turn them back on. So you would have three reactions "Toggle", "TurnOn" and "TurnOff".
+
+You must pass the name of the reaction you wish to start in the inspector.
+
+*StartReaction*
+A much simpler method for when an object will have only one reaction, this dynamically passes variables to StartReaction(GameObject target, Vector3 hitPosition, Collider targetCollider), this always calls the first reaction in the list.
 
 ## How it Works
 
@@ -116,8 +130,6 @@ The ObjectActionSystem (OAS) is made up of two main parts, a __EventMachine__ an
 __EventMachine__
 
 This handles the calling of events, there are 3 types of EventMachines so far, with most using unity's built-in tag system for filtering events. 
-
-
 
 
 
