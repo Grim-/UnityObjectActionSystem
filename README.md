@@ -114,7 +114,7 @@ Once everything is imported and ready -
 
 Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of __EventMachine__ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the ActionController and then which kind of reaction method you wish to call.
 
-*StartNamedReaction(string name)* 
+__*StartNamedReaction(string name)* __
 
 If you want to call a particular named reaction this is useful for object which have multiple similar but different events, such as a light, which may have a reaction to Toggle Lights on/off, but another two reactions specifically for TurningOff the light and TurningOn respectively. 
 
@@ -122,7 +122,8 @@ You may want the light to toggle on when it is clicked, but you may also want a 
 
 You must pass the name of the reaction you wish to start in the inspector.
 
-*StartReaction*
+__*StartReaction*__
+
 A much simpler method for when an object will have only one reaction, this dynamically passes variables to StartReaction(GameObject target, Vector3 hitPosition, Collider targetCollider), this always calls the first reaction in the list.
 
 ## How it Works
@@ -133,7 +134,6 @@ The ObjectActionSystem (OAS) is made up of two main parts, a __EventMachine__ an
 __EventMachine__
 
 This handles the calling of events, there are 3 types of EventMachines so far, with most using unity's built-in tag system for filtering events. 
-
 
 
 __EventMachine__
@@ -176,18 +176,18 @@ This EventMachine requires the GameObject to also have the Affector Component, i
 
 Events For __Element_EventMachine__
 
-1. OnAffector : When another Trigger collider enters the EventMachine's GameObject, with an Affector element for which there is a defined reaction. 
+1. OnAffector : When another Trigger collider enters the __EventMachine__'s GameObject, with an Affector element for which there is a defined reaction. 
 
 
 __ActionController__
 
-The Controllers come in two different types, the ActionController and ElementActionController, these handle the execution and storing of per-object data for the actions.
+The Controllers come in two different types, the __ActionController__ and __ElementActionController__, these handle the execution and storing of per-object data for the actions.
 
 <img src="https://i.imgur.com/z2fNjCf.png">
 
 1. __ActionController
 
-The ActionController is the default controller, it's provides two functions to call from the EventMachine events
+The __ActionController__ is the default controller, it's provides two functions to call from the EventMachine events
 
  1. *StartNamedReaction(string name)* - Finds a reaction by it's name then executes it.
 
