@@ -13,7 +13,7 @@ From simple examples such as, playing a particle effect on left clicking a GameO
 <img src="https://i.imgur.com/rmVfad4.gif">
 
 Or Starting a fire 
-[Fire Example on Imgur](https://imgur.com/WIaHxtK)
+[Burning Barrels Example on Imgur](https://imgur.com/WIaHxtK)
 
 <img src="https://i.imgur.com/ACW14x6.mp4">
 
