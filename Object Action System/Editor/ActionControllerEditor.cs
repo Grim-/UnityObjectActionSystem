@@ -275,6 +275,7 @@ public class ActionControllerEditor : Editor
         SerializedProperty dataStringValues = action.FindPropertyRelative("data").FindPropertyRelative("stringValues");
         SerializedProperty dataBoolValues = action.FindPropertyRelative("data").FindPropertyRelative("boolValues");
         SerializedProperty dataIntValues = action.FindPropertyRelative("data").FindPropertyRelative("intValues");
+        SerializedProperty dataSOValues = action.FindPropertyRelative("data").FindPropertyRelative("soValues");
         SerializedProperty dataVectorValues = action.FindPropertyRelative("data").FindPropertyRelative("vectorValues");
         SerializedProperty dataPrefabValues = action.FindPropertyRelative("data").FindPropertyRelative("prefabValues");
 
@@ -300,6 +301,7 @@ public class ActionControllerEditor : Editor
                 PopulateDataValue(dataIntValues, objectAction, DataValueType.INT);
                 PopulateDataValue(dataVectorValues, objectAction, DataValueType.VECTOR);
                 PopulateDataValue(dataPrefabValues, objectAction, DataValueType.PREFAB);
+                PopulateDataValue(dataSOValues, objectAction, DataValueType.SCRIPTABLE_OBJECT);
             }
             else
             {
@@ -335,7 +337,7 @@ public class ActionControllerEditor : Editor
         DrawDataValues(data.FindPropertyRelative("prefabValues"), DataValueType.PREFAB, objectAction);
         DrawDataValues(data.FindPropertyRelative("intValues"), DataValueType.INT, objectAction);
         DrawDataValues(data.FindPropertyRelative("vectorValues"), DataValueType.VECTOR, objectAction);
-
+        DrawDataValues(data.FindPropertyRelative("soValues"), DataValueType.SCRIPTABLE_OBJECT, objectAction);
         EditorGUILayout.EndVertical();
         serializedObject.ApplyModifiedProperties();
     }
@@ -348,6 +350,7 @@ public class ActionControllerEditor : Editor
         data.FindPropertyRelative("intValues").ClearArray();
         data.FindPropertyRelative("vectorValues").ClearArray();
         data.FindPropertyRelative("prefabValues").ClearArray();
+        data.FindPropertyRelative("soValues").ClearArray();
     }
     #endregion
 
@@ -570,6 +573,15 @@ public class ActionControllerEditor : Editor
                         soo.FindPropertyRelative("value").objectReferenceValue = obAction.prefabValues[i].value;
                     }
                     break;
+                case DataValueType.SCRIPTABLE_OBJECT:
+                    dataValue.arraySize = obAction.soValues.Count;
+                    for (int i = 0; i < obAction.soValues.Count; i++)
+                    {
+                        SerializedProperty soo = dataValue.GetArrayElementAtIndex(i);
+                        soo.FindPropertyRelative("name").stringValue = obAction.soValues[i].name;
+                        soo.FindPropertyRelative("value").objectReferenceValue = obAction.soValues[i].value;
+                    }
+                    break;
             }
         }
     }
@@ -628,6 +640,9 @@ public class ActionControllerEditor : Editor
                     if (texture != null) GUILayout.Label(texture, GUILayout.MaxWidth(90f), GUILayout.MaxHeight(90f));
                 }
                 break;
+            case DataValueType.SCRIPTABLE_OBJECT:
+                dataValue.FindPropertyRelative("value").objectReferenceValue = EditorGUILayout.ObjectField(dataValue.FindPropertyRelative("value").objectReferenceValue, typeof(ScriptableObject), false);
+                break;
         }
     }
     private void DrawCurrentObjectActionLabel()
@@ -679,5 +694,6 @@ public enum DataValueType
     STRING,
     BOOL,
     VECTOR,
-    PREFAB
+    PREFAB,
+    SCRIPTABLE_OBJECT
 }

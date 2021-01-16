@@ -20,3 +20,6 @@ MonoBehaviour:
   actionValues: []
   boolValues: []
   enumValues: []
+  soValues:
+  - name: Element
+    value: {fileID: 0}

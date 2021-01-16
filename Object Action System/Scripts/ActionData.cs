@@ -15,6 +15,7 @@ public class ActionData
     public List<Vector3Value> vectorValues = new List<Vector3Value>();
     public List<ActionValue> actionValues = new List<ActionValue>();
     public List<EnumValue> enumValues = new List<EnumValue>();
+    public List<ScriptableObjectValue> soValues = new List<ScriptableObjectValue>();
 
     public enum GameObjectActionTarget
     {
@@ -25,6 +26,11 @@ public class ActionData
     public string GetStringValue(string name)
     {
         return stringValues.Find(x => x.name == name).value;
+    }
+
+    public ScriptableObject GetSOValue(string name)
+    {
+        return soValues.Find(x => x.name == name).value;
     }
 
     public float GetFloatValue(string name)
@@ -86,6 +92,12 @@ public class ActionData
     {
         PrefabValue newValue = new PrefabValue(name, value);
         if (prefabValues.Find(x => x.name == name) == null) prefabValues.Add(newValue);
+    }
+
+    public void AddSOValue(string name, ScriptableObject value)
+    {
+        ScriptableObjectValue newValue = new ScriptableObjectValue(name, value);
+        if (soValues.Find(x => x.name == name) == null) soValues.Add(newValue);
     }
 
     public void AddIntValue(string name, int value)

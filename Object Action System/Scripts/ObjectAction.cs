@@ -15,6 +15,7 @@ public abstract class ObjectAction : ScriptableObject
     public List<ActionValue> actionValues = new List<ActionValue>();
     public List<BoolValue> boolValues = new List<BoolValue>();
     public List<EnumValue> enumValues = new List<EnumValue>();
+    public List<ScriptableObjectValue> soValues = new List<ScriptableObjectValue>();
 
     public abstract IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint);
 
@@ -56,6 +57,12 @@ public abstract class ObjectAction : ScriptableObject
     {
         PrefabValue newValue = new PrefabValue(name, value);
         if (prefabValues.Find(x => x.name == name) == null) prefabValues.Add(newValue);       
+    }
+
+    public void AddDefaultSOValue(string name, ScriptableObject value)
+    {
+        ScriptableObjectValue newValue = new ScriptableObjectValue(name, value);
+        if (soValues.Find(x => x.name == name) == null) soValues.Add(newValue);
     }
 
     public void AddDefaultIntValue(string name, int value)
