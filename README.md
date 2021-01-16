@@ -13,7 +13,8 @@ From simple examples such as, playing a particle effect on left clicking a GameO
 
 Or Starting a fire 
 [Fire Example on Imgur](https://imgur.com/WIaHxtK)
-<blockquote class="imgur-embed-pub" lang="en" data-id="ACW14x6"><a href="https://imgur.com/ACW14x6">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+<img src="https://i.imgur.com/ACW14x6.mp4">
 
 Lets take a quick look at the Element_ActionController for the burning barrels example..
 
