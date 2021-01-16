@@ -12,9 +12,7 @@ From simple examples such as, playing a particle effect on left clicking a GameO
 <img src="https://i.imgur.com/rmVfad4.gif">
 
 Or Starting a fire 
-
-<img src="https://i.imgur.com/WIaHxtK.gif">
-
+![Fire Example on Imgur](https://imgur.com/WIaHxtK)
 
 ## How it Works
 
