@@ -16,18 +16,25 @@ __EventMachine__
 
 This is the most basic EventMachine it handles Trigger events and Collider events, it also has a __allowedTags__ array field allowing you to specify which Unity tags can trigger events.
 
-Events For EventMachine
+Events For __EventMachine__
 
-Triggers : OnEnterTrigger, OnStayTrigger, OnExitTrigger
+*Triggers :*
 
-Colliders : OnEnterCollision, OnStayCollision, OnExitCollision
+1. OnEnterTrigger
+2. OnStayTrigger
+3. OnExitTrigger
+
+*Colliders :*
+1. OnEnterCollision
+2. OnStayCollision
+3. OnExitCollision
 
 
  __Mouse_EventMachine__
 
 An EventMachine for handling GameObject Mouse events, like the __EventMachine__ it has a __allowedTags__ field.
 
-Events For Mouse_EventMachine
+Events For __Mouse_EventMachine__
 
 1. OnMouseAsButton 
 2. OnDragMouse 
@@ -41,7 +48,7 @@ __Element_EventMachine__
 
 This EventMachine requires the GameObject to also have the Affector Component, it fires an event when another trigger collider enters it own trigger collider, who's Affector it has a reaction for.
 
-Events For Element_EventMachine
+Events For __Element_EventMachine__
 
 1. OnAffector : When another Trigger collider enters the EventMachine's GameObject, with an Affector element for which there is a defined reaction. 
 
@@ -49,6 +56,8 @@ Events For Element_EventMachine
 __ActionController__
 
 The Controllers come in two different types, the ActionController and ElementActionController, these handle the execution and storing of per-object data for the actions.
+
+<img src="https://i.imgur.com/z2fNjCf.png">
 
 1. __ActionController
 
