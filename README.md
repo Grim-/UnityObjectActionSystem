@@ -116,9 +116,8 @@ Once everything is imported and ready -
 Add a __EventMachine__ to an Object followed by an __ActionController__, once this is done add an event from the list of __EventMachine__ events that you want to fire on, drag the Object you want to react into the object slot then in the function drop down, select the ActionController and then which kind of reaction method you wish to call.
 
 
-<img src="https://i.imgur.com/KahlwLL.gif">
 
-
+<img src="https://i.imgur.com/EKIE0zH.gif">
 
 __*StartNamedReaction(string name)*__
 
@@ -127,6 +126,10 @@ If you want to call a particular named reaction this is useful for object which 
 You may want the light to toggle on when it is clicked, but you may also want a button that can turn off all attached lights and another to turn them back on. So you would have three reactions "Toggle", "TurnOn" and "TurnOff".
 
 You must pass the name of the reaction you wish to start in the inspector.
+
+
+
+<img src="https://i.imgur.com/KahlwLL.gif">
 
 __*StartReaction*__
 
