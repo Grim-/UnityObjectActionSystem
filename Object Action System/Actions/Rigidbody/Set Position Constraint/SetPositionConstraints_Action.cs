@@ -1,37 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SetPositionConstraints_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override void Init()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+
+    public class SetPositionConstraints_Action : ObjectAction
     {
-        base.Init();
-
-        AddDefaultVectorValue("PositionConstraint", Vector3.zero);
-    }
-
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
-    {
-        Rigidbody rigidbody = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                rigidbody = _controller.GetComponent<Rigidbody>();
-                break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                rigidbody = target.GetComponent<Rigidbody>();
-                break;
+            base.Init();
+
+            AddDefaultVectorValue("PositionConstraint", Vector3.zero);
         }
 
-        //SetMass(rigidbody, data.GetFloatValue("MassValue"));
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+        {
+            Rigidbody rigidbody = null;
 
-        yield break;
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    rigidbody = _controller.GetComponent<Rigidbody>();
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    rigidbody = target.GetComponent<Rigidbody>();
+                    break;
+            }
+
+            //SetMass(rigidbody, data.GetFloatValue("MassValue"));
+
+            yield break;
+        }
+
+        private void SetPositionConstraint(Rigidbody rigidbody, Vector3 value)
+        {
+            //if (rigidbody) rigidbody.constraints = RigidbodyConstraints.;
+        }
     }
 
-    private void SetPositionConstraint(Rigidbody rigidbody, Vector3 value)
-    {
-        //if (rigidbody) rigidbody.constraints = RigidbodyConstraints.;
-    }
 }

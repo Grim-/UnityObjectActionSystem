@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4589406ec8e2ef46b616810e9743951, type: 3}
+  m_Name: Add Repelling Force
+  m_EditorClassIdentifier: 
+  description: "Adds a Repelling Force.\nIf self is target then it adds a repelling
+    force to self away from target. \nIf target is chosen it adds a repelling force
+    to target away from self."
+  stringValues: []
+  floatValues:
+  - name: ForcePower
+    value: 10
+  prefabValues: []
+  intValues: []
+  vectorValues: []
+  actionValues: []
+  boolValues: []
+  enumValues:
+  - name: ForceMode
+    value: 5
+  soValues: []

@@ -7,7 +7,7 @@ public class EventMachine : MonoBehaviour
 {
     #region Inspector Variables
 
-    public string[] allowedTags;
+    public List<ExTag> triggerTags;
 
     public UnityEvent<GameObject, Vector3, Collider> OnEnterTrigger;
 
@@ -31,13 +31,15 @@ public class EventMachine : MonoBehaviour
     /// <returns></returns>
     private bool CheckTags(GameObject target)
     {
-        if (allowedTags.Length == 0) return true;
+        Tag targetTag = target.GetComponent<Tag>();
 
-        foreach (var triggerTag in allowedTags)
-        {          
-            if (target.tag == triggerTag) return true;
-            else continue;               
-        }    
+        if (triggerTags.Count == 0) return true;
+
+        foreach (var triggerTag in triggerTags)
+        {
+            if (targetTag != null && targetTag.HasTag(triggerTag)) return true;
+            else continue;
+        }
         return false;
     }
 
@@ -49,14 +51,11 @@ public class EventMachine : MonoBehaviour
 
         for (int i = 0; i < numCollisionEvents; i++)
         {
-            for (int x = 0; x < allowedTags.Length; x++)
+            if (CheckTags(other.gameObject))
             {
-                if (CheckTags(other.gameObject))
-                {
-                    OnCollisionParticle.Invoke(other.gameObject, collisionEvents[i].intersection);
-                    break;
-                }
-            }
+                OnCollisionParticle.Invoke(other.gameObject, collisionEvents[i].intersection);
+                break;
+            }            
         }
     }
 

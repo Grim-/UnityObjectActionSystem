@@ -2,34 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementActionController : BaseController
+namespace Grim.ObjectActionSystem
 {
-    public List<ElementObjectReactionData> reactions;
-
-    public void StartReaction(Element affectorElement, GameObject otherGameobject, Vector3 hitPosition, Collider otherCollider)
+    public class ElementActionController : BaseController
     {
-        ElementObjectReactionData elementReaction = reactions.Find(x => x.element == affectorElement);
+        public List<ElementObjectReactionData> reactions;
 
-        if (elementReaction != null && !IsRunning)
+        public void StartReaction(Element affectorElement, GameObject otherGameobject, Vector3 hitPosition, Collider otherCollider)
         {
-            StartCoroutine(DoReaction(elementReaction, otherGameobject, hitPosition));
-        }
-    }
+            ElementObjectReactionData elementReaction = reactions.Find(x => x.element == affectorElement);
 
-
-    public override IEnumerator DoActions(GameObject otherGameObject, Vector3 reactionHitPosition)
-    {
-        for (int i = 0; i < currentReaction.actions.Count; i++)
-        {
-            ObjectReaction currentReactionAction = currentReaction.actions[i];
-            ActionData currentReactionData = currentReactionAction.data;
-            if (currentReactionAction.enabled)
+            if (elementReaction != null && !IsRunning)
             {
-                SetCurrentActionIndex(i);
-                SetCurrentAction(currentReactionAction.action);
-                yield return currentReactionAction.action.Execute(this, currentReactionData, otherGameObject, reactionHitPosition);
+                StartCoroutine(DoReaction(elementReaction, otherGameobject, hitPosition));
             }
         }
-        yield return null;
-    }
+
+
+        public override IEnumerator DoActions(GameObject otherGameObject, Vector3 reactionHitPosition)
+        {
+            for (int i = 0; i < currentReaction.actions.Count; i++)
+            {
+                ObjectReaction currentReactionAction = currentReaction.actions[i];
+                ActionData currentReactionData = currentReactionAction.data;
+                if (currentReactionAction.enabled)
+                {
+                    SetCurrentActionIndex(i);
+                    SetCurrentAction(currentReactionAction.action);
+                    yield return currentReactionAction.action.Execute(this, currentReactionData, otherGameObject, reactionHitPosition);
+                }
+            }
+            yield return null;
+        }
+
+        public override List<ObjectReactionData> GetReactions()
+        {
+            return null;
+        }
+    } 
 }

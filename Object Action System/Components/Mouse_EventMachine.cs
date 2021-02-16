@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class Mouse_EventMachine : MonoBehaviour
 {
     public string[] triggerTags;
-    public string[] ignoreTags;
 
     public UnityEvent<GameObject, Vector3, Collider> OnMouseAsButton;
     public UnityEvent<GameObject, Vector3, Collider> OnDragMouse;
@@ -17,6 +16,8 @@ public class Mouse_EventMachine : MonoBehaviour
     public UnityEvent<GameObject, Vector3, Collider> OnUpMouse;
     public UnityEvent<GameObject, Vector3, Collider> OnDownMouse;
     public UnityEvent<GameObject, Vector3, Collider> OnOverMouse;
+
+    //Has no event parameters to pass, so pass itself.
 
     private void OnMouseDrag()
     {

@@ -1,55 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "Lerp ShaderGraph Float Value", menuName = scriptObjectPath + "Lerp ShaderGraph Float Value")]
-public class LerpShadergraphFloatValue : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override void Init()
-    {
-        base.Init();
-        AddDefaultStringValue("PropertyName", "DissolveValue");
-        AddDefaultFloatValue("Value", 0f);
-        AddDefaultFloatValue("LerpTime", 1f);
-    }
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    [CreateAssetMenu(fileName = "Lerp ShaderGraph float Value", menuName = scriptObjectPath + "Lerp ShaderGraph Float Value")]
+    public class LerpShadergraphFloatValue : ObjectAction
     {
-        Renderer targetObject = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                targetObject = _controller.GetComponent<Renderer>();
-                break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                targetObject = target.GetComponent<Renderer>();
-                break;
+            base.Init();
+            SetDescription("Lerp a ShaderGraph float Value by PropertyName to Value over LerpTime");
+            AddDefaultStringValue("PropertyName", "DissolveValue");
+            AddDefaultFloatValue("Value", 0f);
+            AddDefaultFloatValue("LerpTime", 1f);
         }
 
-        yield return LerpFloatValue(targetObject, data.GetStringValue("PropertyName"), data.GetFloatValue("Value"), data.GetFloatValue("LerpTime"));
-
-
-        yield break;
-    }
-
-
-    private IEnumerator LerpFloatValue(Renderer targetObject, string propertyName, float value, float lerpTime)
-    {
-        float timer = 0;
-        float currentValue = targetObject.material.GetFloat(propertyName);
-
-        while (timer < lerpTime)
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
         {
-            timer += Time.deltaTime;
+            Renderer targetObject = null;
 
-            targetObject.material.SetFloat(propertyName, Mathf.Lerp(currentValue, value, timer / lerpTime));
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    targetObject = _controller.GetComponent<Renderer>();
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    targetObject = target.GetComponent<Renderer>();
+                    break;
+            }
 
-            yield return null;
+            yield return LerpFloatValue(targetObject, data.GetStringValue("PropertyName"), data.GetFloatValue("Value"), data.GetFloatValue("LerpTime"));
+
+
+            yield break;
         }
 
-        timer = 0f;
 
-        yield break;
+        private IEnumerator LerpFloatValue(Renderer targetObject, string propertyName, float value, float lerpTime)
+        {
+            float timer = 0;
+            float currentValue = targetObject.material.GetFloat(propertyName);
+
+            while (timer < lerpTime)
+            {
+                timer += Time.deltaTime;
+
+                targetObject.material.SetFloat(propertyName, Mathf.Lerp(currentValue, value, timer / lerpTime));
+
+                yield return null;
+            }
+
+            timer = 0f;
+
+            yield break;
+        }
     }
+
 }

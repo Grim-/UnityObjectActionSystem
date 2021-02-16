@@ -3,31 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Enable Gravity", menuName = scriptObjectPath + "Enable Gravity")]
-public class EnableGravity_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    [CreateAssetMenu(fileName = "Enable Gravity", menuName = scriptObjectPath + "Enable Gravity")]
+    public class EnableGravity_Action : ObjectAction
     {
-        Rigidbody rigidbody = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                rigidbody = _controller.GetComponent<Rigidbody>();
-
-            break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                rigidbody = target.GetComponent<Rigidbody>();
-            break;
+            base.Init();
+            SetDescription("Enables self or target's Rigidbody gravity");
         }
 
-        EnableGravity(rigidbody);
-        yield break;
-    }
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+        {
+            Rigidbody rigidbody = null;
 
-    private void EnableGravity(Rigidbody rigidbody)
-    {
-        if (rigidbody != null) rigidbody.useGravity = true;      
-    }
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    rigidbody = _controller.GetComponent<Rigidbody>();
 
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    rigidbody = target.GetComponent<Rigidbody>();
+                    break;
+            }
+
+            EnableGravity(rigidbody);
+            yield break;
+        }
+
+        private void EnableGravity(Rigidbody rigidbody)
+        {
+            if (rigidbody != null) rigidbody.useGravity = true;
+        }
+
+    } 
 }

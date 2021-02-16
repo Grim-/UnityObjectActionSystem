@@ -1,32 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-
-[CustomEditor(typeof(ElementActionController))]
-public class ElementActionControllerEditor : ActionControllerEditor
+namespace Grim.ObjectActionSystem
 {
-    ElementActionController controller;
- 
-    public override void OnInspectorGUI()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEditor;
+    using UnityEngine;
+
+    [CustomEditor(typeof(ElementActionController))]
+    public class ElementActionControllerEditor : ActionControllerEditor
     {
-        controller = (ElementActionController)target;
-        DrawInspector();
-        DrawInspectorFooter();
-    }
+        ElementActionController controller;
 
-    public override void DrawReaction_Header(SerializedProperty reactionToDraw)
-    {
-        var rect = EditorGUILayout.BeginHorizontal();
-
-        //reactionToDraw.FindPropertyRelative("reactionName").stringValue = EditorGUILayout.TextField(reactionToDraw.FindPropertyRelative("reactionName").stringValue);
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(reactionToDraw.FindPropertyRelative("element"));
-
-        if (EditorGUI.EndChangeCheck())
+        public override void OnInspectorGUI()
         {
-            serializedObject.ApplyModifiedProperties();
+            controller = (ElementActionController)target;
+            DrawInspector();
+            DrawInspectorFooter();
         }
-        EditorGUILayout.EndHorizontal();
+
+        public override void DrawReaction_Header(SerializedProperty reactionToDraw)
+        {
+            var rect = EditorGUILayout.BeginHorizontal();
+
+            //reactionToDraw.FindPropertyRelative("reactionName").stringValue = EditorGUILayout.TextField(reactionToDraw.FindPropertyRelative("reactionName").stringValue);
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(reactionToDraw.FindPropertyRelative("element"));
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
+            EditorGUILayout.EndHorizontal();
+        }
     }
+
 }

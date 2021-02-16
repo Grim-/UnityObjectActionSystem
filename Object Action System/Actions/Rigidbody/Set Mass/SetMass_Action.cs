@@ -2,37 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Set Mass", menuName = scriptObjectPath + "Set Mass")]
-public class SetMass_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override void Init()
+    [CreateAssetMenu(fileName = "Set Mass", menuName = scriptObjectPath + "Set Mass")]
+    public class SetMass_Action : ObjectAction
     {
-        base.Init();
-
-        AddDefaultFloatValue("MassValue", 0);
-    }
-
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
-    {
-        Rigidbody rigidbody = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                rigidbody = _controller.GetComponent<Rigidbody>();
-                break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                rigidbody = target.GetComponent<Rigidbody>();
-                break;
+            base.Init();
+            SetDescription("Set Rigidbody's Mass to MassValue");
+            AddDefaultFloatValue("MassValue", 0);
         }
 
-        SetMass(rigidbody, data.GetFloatValue("MassValue"));
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+        {
+            Rigidbody rigidbody = null;
 
-        yield break;
-    }
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    rigidbody = _controller.GetComponent<Rigidbody>();
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    rigidbody = target.GetComponent<Rigidbody>();
+                    break;
+            }
 
-    private void SetMass(Rigidbody rigidbody, float value)
-    {
-        if (rigidbody) rigidbody.mass = value;
-    }
+            SetMass(rigidbody, data.GetFloatValue("MassValue"));
+
+            yield break;
+        }
+
+        private void SetMass(Rigidbody rigidbody, float value)
+        {
+            if (rigidbody) rigidbody.mass = value;
+        }
+    } 
 }

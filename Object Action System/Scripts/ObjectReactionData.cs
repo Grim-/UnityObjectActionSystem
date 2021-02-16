@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-/// <summary>
-///  Defines a Reaction, a list of actions with data to be executed
-/// </summary>
-[System.Serializable]
-public class ObjectReactionData
+namespace Grim.ObjectActionSystem
 {
-    public string reactionName;
-    public List<ObjectReaction> actions;
-    [HideInInspector]
-    public GameObject parent;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    public void Init(GameObject _parent)
+
+    /// <summary>
+    ///  Defines a Reaction, a list of actions with data to be executed
+    /// </summary>
+    [System.Serializable]
+    public class ObjectReactionData
     {
-        parent = _parent;
-    }
-}
+        public string reactionName;
+        public List<ObjectReaction> actions;
+        [HideInInspector]
+        public GameObject parent;
 
-//
+        public void Init(GameObject _parent)
+        {
+            parent = _parent;
+        }
+    }
+
+    //  
+}

@@ -1,42 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "Toggle Child Light Components", menuName = scriptObjectPath + "Toggle Child Light Components")]
-public class ToggleChildLight_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override void Init()
-    {
-        base.Init();
-    }
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    [CreateAssetMenu(fileName = "Toggle Child Light Components", menuName = scriptObjectPath + "Toggle Child Light Components")]
+    public class ToggleChildLight_Action : ObjectAction
     {
-        GameObject targetObject = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                targetObject = _controller.gameObject;
-            break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                targetObject = target.gameObject;
-            break;
+            base.Init();
+            SetDescription("Toggle the child Light Components of self or target");
         }
 
-        ToggleLights(targetObject);
-
-        yield break;
-    }
-
-    private void ToggleLights(GameObject gameObject)
-    {
-        if(gameObject)
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
         {
-            foreach (var child in gameObject.GetComponentsInChildren<Light>())
+            GameObject targetObject = null;
+
+            switch (data.targetType)
             {
-                child.enabled = !child.enabled;                           
+                case ActionData.GameObjectActionTarget.SELF:
+                    targetObject = _controller.gameObject;
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    targetObject = target.gameObject;
+                    break;
+            }
+
+            ToggleLights(targetObject);
+
+            yield break;
+        }
+
+        private void ToggleLights(GameObject gameObject)
+        {
+            if (gameObject)
+            {
+                foreach (var child in gameObject.GetComponentsInChildren<Light>())
+                {
+                    child.enabled = !child.enabled;
+                }
             }
         }
     }
+
 }

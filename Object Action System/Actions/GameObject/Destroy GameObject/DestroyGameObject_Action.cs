@@ -1,22 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "Destroy GameObject", menuName = scriptObjectPath + "Destroy GameObject")]
-public class DestroyGameObject_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+
+    [CreateAssetMenu(fileName = "Destroy GameObject", menuName = scriptObjectPath + "Destroy GameObject")]
+    public class DestroyGameObject_Action : ObjectAction
     {
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                Destroy(_controller.gameObject);                             
-            break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                Destroy(target);
-            break;
+            base.Init();
+            SetDescription("Destroy self or target GameObject");
         }
 
-        yield break;
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+        {
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    Destroy(_controller.gameObject);
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    Destroy(target);
+                    break;
+            }
+
+            yield break;
+        }
     }
+
 }

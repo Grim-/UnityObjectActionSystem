@@ -2,37 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Set Drag", menuName = scriptObjectPath + "Set Drag")]
-public class SetrDrag_Action : ObjectAction
+namespace Grim.ObjectActionSystem
 {
-    public override void Init()
+    [CreateAssetMenu(fileName = "Set Drag", menuName = scriptObjectPath + "Set Drag")]
+    public class SetrDrag_Action : ObjectAction
     {
-        base.Init();
-
-        AddDefaultFloatValue("DragValue", 0);
-    }
-
-    public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
-    {
-        Rigidbody rigidbody = null;
-
-        switch (data.targetType)
+        public override void Init()
         {
-            case ActionData.GameObjectActionTarget.SELF:
-                rigidbody = _controller.GetComponent<Rigidbody>();
-                break;
-            case ActionData.GameObjectActionTarget.TARGET:
-                rigidbody = target.GetComponent<Rigidbody>();
-                break;
+            base.Init();
+            SetDescription("Set Rigidbody's Drag to DragValue");
+            AddDefaultFloatValue("DragValue", 0);
         }
 
-        SetAngularDrag(rigidbody, data.GetFloatValue("DragValue"));
+        public override IEnumerator Execute(BaseController _controller, ActionData data, GameObject target, Vector3 hitpoint)
+        {
+            Rigidbody rigidbody = null;
 
-        yield break;
-    }
+            switch (data.targetType)
+            {
+                case ActionData.GameObjectActionTarget.SELF:
+                    rigidbody = _controller.GetComponent<Rigidbody>();
+                    break;
+                case ActionData.GameObjectActionTarget.TARGET:
+                    rigidbody = target.GetComponent<Rigidbody>();
+                    break;
+            }
 
-    private void SetAngularDrag(Rigidbody rigidbody, float value)
-    {
-        if (rigidbody) rigidbody.drag = value;
-    }
+            SetAngularDrag(rigidbody, data.GetFloatValue("DragValue"));
+
+            yield break;
+        }
+
+        private void SetAngularDrag(Rigidbody rigidbody, float value)
+        {
+            if (rigidbody) rigidbody.drag = value;
+        }
+    } 
 }
